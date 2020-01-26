@@ -6,7 +6,7 @@ RUN export TZ=Europe/Rome && \
 	apt-get update && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
-	apt-get -y install --no-install-recommends sudo mate synaptic && \
+	apt-get -y install --no-install-recommends sudo mate && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "DebianBuster - noVNC";' /usr/share/novnc/app/ui.js
 
@@ -21,7 +21,8 @@ ENV GID=100
 RUN mkdir $DATA_DIR	&& \
 	useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID debian && \
 	chown -R debian $DATA_DIR && \
-	ulimit -n 2048
+	ulimit -n 2048 && \
+	echo "root:Docker!" | chpasswd
 
 ADD /scripts/ /opt/scripts/
 RUN chmod -R 770 /opt/scripts/ && \
