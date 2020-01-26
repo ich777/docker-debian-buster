@@ -35,4 +35,4 @@ websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5
 sleep 2
 
 echo "---Starting Desktop---"
-mate-desktop
+mate-session
