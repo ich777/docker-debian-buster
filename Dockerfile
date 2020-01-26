@@ -6,7 +6,7 @@ RUN export TZ=Europe/Rome && \
 	apt-get update && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
-	apt-get -y install --no-install-recommends sudo mate && \
+	apt-get -y install --no-install-recommends sudo dbus mate && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "DebianBuster - noVNC";' /usr/share/novnc/app/ui.js
 
@@ -26,7 +26,11 @@ RUN mkdir $DATA_DIR	&& \
 
 ADD /scripts/ /opt/scripts/
 RUN chmod -R 770 /opt/scripts/ && \
-	chown -R debian /opt/scripts/
+	chown -R debian /opt/scripts/ && \
+	dbus-uuidgen > /var/lib/dbus/machine-id && \
+	mkdir -p /var/run/dbus && \
+	chmod -R 770 /var/run/dbus/ && \
+	chown -R rpd /var/run/dbus/
 
 USER debian
 
