@@ -30,7 +30,7 @@ RUN chmod -R 770 /opt/scripts/ && \
 	dbus-uuidgen > /var/lib/dbus/machine-id && \
 	mkdir -p /var/run/dbus && \
 	chmod -R 770 /var/run/dbus/ && \
-	chown -R rpd /var/run/dbus/
+	chown -R debian /var/run/dbus/
 
 USER debian
 
