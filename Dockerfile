@@ -25,7 +25,7 @@ RUN mkdir $DATA_DIR	&& \
 
 ADD /scripts/ /opt/scripts/
 RUN chmod -R 770 /opt/scripts/ && \
-	chown -R debian /opt/scripts/ && \
+	chown -R debian /opt/scripts/
 
 USER debian
 
