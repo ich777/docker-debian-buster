@@ -1,8 +1,6 @@
 #!/bin/bash
 export LANG=en_US.UTF-8
 export DISPLAY=:99
-echo "---Setting umask to ${UMASK}---"
-umask ${UMASK}
 
 echo "---Preparing Server---"
 echo "---Checking for old logfiles---"
@@ -11,7 +9,7 @@ find $DATA_DIR -name "x11vncLog.*" -exec rm -f {} \;
 echo "---Checking for old lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \;
 find /var/run/dbus -name "pid" -exec rm -f {} \;
-chmod -R 777 ${DATA_DIR}
+chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting dbus service---"
 if dbus-daemon --config-file=/usr/share/dbus-1/system.conf ; then
