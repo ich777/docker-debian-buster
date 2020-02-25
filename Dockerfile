@@ -24,8 +24,7 @@ ENV ROOT_PWD="Docker!"
 RUN mkdir $DATA_DIR	&& \
 	useradd -d $DATA_DIR -s /bin/bash $USER && \
 	chown -R $USER $DATA_DIR && \
-	ulimit -n 2048 && \
-
+	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
 RUN chmod -R 770 /opt/scripts/
