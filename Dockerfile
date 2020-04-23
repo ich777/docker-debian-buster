@@ -3,7 +3,7 @@ FROM ich777/novnc-baseimage
 LABEL maintainer="admin@minenet.at"
 
 RUN export TZ=Europe/Rome && \
-	export LANG=en_US.UTF-8 && \
+	DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
