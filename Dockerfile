@@ -6,7 +6,7 @@ RUN export TZ=Europe/Rome && \
 	apt-get update && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
-	apt-get -y install --no-install-recommends sudo dbus mate firefox-esr && \
+	apt-get -y install --no-install-recommends && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "DebianBuster - noVNC";' /usr/share/novnc/app/ui.js
 
