@@ -12,15 +12,6 @@ find /tmp -name ".X99*" -exec rm -f {} \;
 find /var/run/dbus -name "pid" -exec rm -f {} \;
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
-echo "---Starting dbus service---"
-if dbus-daemon --config-file=/usr/share/dbus-1/system.conf ; then
-	echo "---dbus service started---"
-else
-	echo "---Couldn't start dbus service---"
-	sleep infinity
-fi
-sleep 2
-
 echo "---Starting Xvfb server---"
 screen -S Xvfb -L -Logfile ${DATA_DIR}/XvfbLog.0 -d -m /opt/scripts/start-Xvfb.sh
 sleep 2
