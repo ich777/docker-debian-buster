@@ -24,7 +24,5 @@ echo "---Starting noVNC server---"
 websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5900
 sleep 2
 
-sleep infinity
-
 echo "---Starting Desktop---"
 startxfce4
