@@ -1,6 +1,7 @@
 #!/bin/bash
 export LANG=en_US.UTF-8
 export DISPLAY=:99
+export XDG_RUNTIME_DIR=${DATA_DIR}/
 
 echo "---Preparing Server---"
 echo "---Checking for old logfiles---"
