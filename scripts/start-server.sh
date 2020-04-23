@@ -36,4 +36,4 @@ sleep 2
 sleep infinity
 
 echo "---Starting Desktop---"
-mate-session
+startxfce4
