@@ -22,7 +22,6 @@ RUN export TZ=Europe/Rome && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "DebianBuster - noVNC";' /usr/share/novnc/app/ui.js && \
 	mkdir /tmp/config && \
-	mkdir -p /usr/bin/pm-is-supported && \
 	rm /usr/share/novnc/app/images/icons/*
 
 ENV DATA_DIR=/debian
