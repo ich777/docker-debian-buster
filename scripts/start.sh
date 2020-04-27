@@ -19,5 +19,6 @@ fi
 
 echo "---Starting...---"
 chown -R ${UID}:${GID} /opt/scripts
+dbus-uuidgen > /var/lib/dbus/machine-id
 chown -R ${UID}:${GID} ${DATA_DIR}
 su ${USER} -c "/opt/scripts/start-server.sh"
