@@ -7,7 +7,7 @@ You also can reverse proxy this container with nginx or apache (for more info se
 
 >**Storage Note:** All things that are saved in the container should be in the home or a subdirectory in your homefolder, all files that are store outside your homefolder are not persistant and will be wiped if there is an update of the container or you change something in the template.
 
->**ATTENTION:** This container is not finished yet and currently in alpha state.
+### >**ATTENTION:** This container is not finished yet and currently in alpha state.
 
 ## Env params
 | Name | Value | Example |
