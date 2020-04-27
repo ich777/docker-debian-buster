@@ -4,6 +4,9 @@ export DISPLAY=:99
 export XDG_RUNTIME_DIR=/tmp
 
 echo "---Preparing Server---"
+if [ -d ${DATA_DIR}/.logs ]; then
+	mkdir ${DATA_DIR}/.logs
+fi
 if [ -f /opt/scripts/user.sh ]; then
 	ln -s /opt/scripts/user.sh ${DATA_DIR}/user.sh
 fi
