@@ -7,6 +7,20 @@ RUN export TZ=Europe/Rome && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
 	DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends man-db hdparm udev whiptail reportbug init vim-common iproute2 nano gdbm-l10n less iputils-ping netcat-traditional perl bzip2 gettext-base manpages file liblockfile-bin python3-reportbug libnss-systemd isc-dhcp-common systemd-sysv xz-utils perl-modules-5.28 debian-faq wamerican bsdmainutils systemd cpio logrotate traceroute dbus kmod isc-dhcp-client telnet krb5-locales lsof debconf-i18n cron ncurses-term iptables ifupdown procps rsyslog apt-utils netbase pciutils bash-completion vim-tiny groff-base apt-listchanges bind9-host doc-debian libpam-systemd openssh-client xfce4 xorg dbus-x11 sudo gvfs-backends gvfs-common gvfs-fuse gvfs firefox-esr at-spi2-core gpg-agent mousepad xarchiver sylpheed && \
+	cd /tmp && \
+	wget -O /tmp/theme.tar.gz https://gitlab.manjaro.org/artwork/themes/breath-gtk/-/archive/master/breath-gtk-master.tar.gz && \
+	tar -xvf /tmp/theme.tar.gz && \
+	mv /tmp/breath*/Breath-Dark /usr/share/themes/ && \
+	rm -R /tmp/breath* && \
+	rm /tmp/theme.tar.gz && \
+	xfconf-query -c xsettings -p /Net/ThemeName -s "Breath-Dark" && \
+	wget -O /tmp/icons.zip https://github.com/daniruiz/flat-remix/archive/master.zip && \
+	unzip /tmp/icons.zip && \
+	mv /tmp/flat*/Flat-Remix-Green-Dark/ /usr/share/icons/ &&\
+	rm -R /tmp/flat* && \
+	rm /tmp/icons.zip && \
+	xfconf-query -c xsettings -p /Net/IconThemeName -s "Flat-Remix-Green-Dark" && \
+	xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s "/usr/share/backgrounds/xfce/debian.png" && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "DebianBuster - noVNC";' /usr/share/novnc/app/ui.js && \
 	rm /usr/share/novnc/app/images/icons/*
@@ -22,6 +36,7 @@ ENV DATA_PERM=770
 ENV USER="Debian"
 ENV ROOT_PWD="Docker!"
 ENV DEV=""
+ENV CUSTOM_THEME=""
 
 RUN mkdir $DATA_DIR	&& \
 	useradd -d $DATA_DIR -s /bin/bash $USER && \
