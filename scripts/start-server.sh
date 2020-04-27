@@ -7,9 +7,6 @@ echo "---Preparing Server---"
 if [ -d ${DATA_DIR}/.logs ]; then
 	mkdir ${DATA_DIR}/.logs
 fi
-if [ -f /opt/scripts/user.sh ]; then
-	ln -s /opt/scripts/user.sh ${DATA_DIR}/user.sh
-fi
 if [ ! -d ${DATA_DIR}/.local/share/applications ]; then
 	mkdir -p ${DATA_DIR}/.local/share/applications
 fi
