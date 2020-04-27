@@ -7,6 +7,18 @@ echo "---Preparing Server---"
 if [ -f /opt/scripts/user.sh ]; then
 	ln -s /opt/scripts/user.sh ${DATA_DIR}/user.sh
 fi
+if [ ! -d ${DATA_DIR}/.local/share/applications ]; then
+	mkdir -p ${DATA_DIR}/.local/share/applications
+fi
+if [ ! -f ${DATA_DIR}/.local/share/applications/debian-uxterm.desktop  ]; then
+	cp /usr/share/applications/debian-uxterm.desktop ${DATA_DIR}/.local/share/applications/
+	echo "Hidden=true" >> ${DATA_DIR}/.local/share/applications/debian-uxterm.desktop
+fi
+if [ ! -f ${DATA_DIR}/.local/share/applications/x11vnc.desktop  ]; then
+	cp /usr/share/applications/x11vnc.desktop ${DATA_DIR}/.local/share/applications/
+	echo "Hidden=true" >> ${DATA_DIR}/.local/share/applications/x11vnc.desktop
+fi
+
 echo "---Checking for old logfiles---"
 find ${DATA_DIR}/.logs -name "XvfbLog.*" -exec rm -f {} \;
 find ${DATA_DIR}/.logs -name "x11vncLog.*" -exec rm -f {} \;
