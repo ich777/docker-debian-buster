@@ -28,4 +28,7 @@ chmod -R 0700 /tmp/xdg
 dbus-uuidgen > /var/lib/dbus/machine-id
 rm -R /tmp/.* 2> /dev/null
 chown -R ${UID}:${GID} ${DATA_DIR}
+if [ -d /tmp/config ]; then
+	chown -R ${UID}:${GID} /tmp/config
+fi
 su ${USER} -c "/opt/scripts/start-server.sh"
