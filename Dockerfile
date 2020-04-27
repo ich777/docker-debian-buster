@@ -45,6 +45,7 @@ RUN mkdir $DATA_DIR	&& \
 
 ADD /scripts/ /opt/scripts/
 COPY /icons/* /usr/share/novnc/app/images/icons/
+COPY /debian.png /usr/share/backgrounds/xfce/
 RUN chmod -R 770 /opt/scripts/
 
 EXPOSE 8080
