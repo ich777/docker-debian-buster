@@ -24,7 +24,6 @@ fi
 echo "---Starting...---"
 rm -R ${DATA_DIR}/.dbus/session-bus/* 2> /dev/null
 rm -R ${DATA_DIR}/.cache 2> /dev/null
-chown -R ${UID}:${GID} /usr/bin/pm-is-supported
 chown -R ${UID}:${GID} /opt/scripts
 chown -R ${UID}:${GID} /tmp/xdg
 chmod -R 0700 /tmp/xdg
