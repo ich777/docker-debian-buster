@@ -4,7 +4,16 @@ export DISPLAY=:99
 export XDG_RUNTIME_DIR=/tmp/xdg
 
 echo "---Preparing Server---"
-if [ -d ${DATA_DIR}/.logs ]; then
+if [ ! -d ${DATA_DIR}/.config/xfce4/xfconf/xfce-perchannel-xml/ ]; then
+	mkdir -p ${DATA_DIR}/.config/xfce4/xfconf/xfce-perchannel-xml/
+fi
+if [ ! -f ${DATA_DIR}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml ]; then
+	cp /tmp/config/xfce4-desktop.xml ${DATA_DIR}/.config/xfce4/xfconf/xfce-perchannel-xml/
+fi
+if [ ! -f ${DATA_DIR}/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml ]; then
+	cp /tmp/config/xsettings.xml ${DATA_DIR}/.config/xfce4/xfconf/xfce-perchannel-xml/
+fi
+if [ ! -d ${DATA_DIR}/.logs ]; then
 	mkdir ${DATA_DIR}/.logs
 fi
 if [ ! -d ${DATA_DIR}/.local/share/applications ]; then
