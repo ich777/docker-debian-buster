@@ -1,7 +1,7 @@
 #!/bin/bash
 export LANG=en_US.UTF-8
 export DISPLAY=:99
-export XDG_RUNTIME_DIR=/tmp
+export XDG_RUNTIME_DIR=/tmp/xdg
 
 echo "---Preparing Server---"
 if [ -d ${DATA_DIR}/.logs ]; then
