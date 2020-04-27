@@ -19,10 +19,6 @@ fi
 if [ ! -d ${DATA_DIR}/.local/share/applications ]; then
 	mkdir -p ${DATA_DIR}/.local/share/applications
 fi
-if [ ! -f ${DATA_DIR}/.local/share/applications/debian-uxterm.desktop  ]; then
-	cp /usr/share/applications/debian-uxterm.desktop ${DATA_DIR}/.local/share/applications/
-	echo "Hidden=true" >> ${DATA_DIR}/.local/share/applications/debian-uxterm.desktop
-fi
 if [ ! -f ${DATA_DIR}/.local/share/applications/x11vnc.desktop  ]; then
 	cp /usr/share/applications/x11vnc.desktop ${DATA_DIR}/.local/share/applications/
 	echo "Hidden=true" >> ${DATA_DIR}/.local/share/applications/x11vnc.desktop
