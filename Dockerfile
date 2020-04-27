@@ -18,6 +18,7 @@ RUN export TZ=Europe/Rome && \
 	mv /tmp/flat*/Flat-Remix-Green-Dark/ /usr/share/icons/ &&\
 	rm -R /tmp/flat* && \
 	rm /tmp/icons.zip && \
+	gtk-update-icon-cache -f -t /usr/share/icons/Flat-Remix-Green-Dark/ && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "DebianBuster - noVNC";' /usr/share/novnc/app/ui.js && \
 	rm /usr/share/novnc/app/images/icons/*
