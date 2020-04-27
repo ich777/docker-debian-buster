@@ -27,4 +27,8 @@ websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5
 sleep 2
 
 echo "---Starting Desktop---"
-startxfce4
+if [ "${DEV}" == "true" ]; then
+	startxfce4
+else
+	startxfce4 > /dev/null
+fi
