@@ -21,6 +21,7 @@ RUN export TZ=Europe/Rome && \
 	gtk-update-icon-cache -f -t /usr/share/icons/Flat-Remix-Green-Dark/ && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "DebianBuster - noVNC";' /usr/share/novnc/app/ui.js && \
+	mkdir /tmp/config && \
 	rm /usr/share/novnc/app/images/icons/*
 
 ENV DATA_DIR=/debian
@@ -43,7 +44,9 @@ RUN mkdir $DATA_DIR	&& \
 ADD /scripts/ /opt/scripts/
 COPY /icons/* /usr/share/novnc/app/images/icons/
 COPY /debian.png /usr/share/backgrounds/xfce/
+COPY /config/* /tmp/config
 RUN chmod -R 770 /opt/scripts/
+RUN chmod -R 770 /tmp/config
 
 EXPOSE 8080
 
