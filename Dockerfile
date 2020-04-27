@@ -13,14 +13,11 @@ RUN export TZ=Europe/Rome && \
 	mv /tmp/breath*/Breath-Dark /usr/share/themes/ && \
 	rm -R /tmp/breath* && \
 	rm /tmp/theme.tar.gz && \
-	xfconf-query -c xsettings -p /Net/ThemeName -s "Breath-Dark" && \
 	wget -O /tmp/icons.zip https://github.com/daniruiz/flat-remix/archive/master.zip && \
 	unzip /tmp/icons.zip && \
 	mv /tmp/flat*/Flat-Remix-Green-Dark/ /usr/share/icons/ &&\
 	rm -R /tmp/flat* && \
 	rm /tmp/icons.zip && \
-	xfconf-query -c xsettings -p /Net/IconThemeName -s "Flat-Remix-Green-Dark" && \
-	xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s "/usr/share/backgrounds/xfce/debian.png" && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "DebianBuster - noVNC";' /usr/share/novnc/app/ui.js && \
 	rm /usr/share/novnc/app/images/icons/*
