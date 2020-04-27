@@ -34,7 +34,6 @@ ENV DATA_PERM=770
 ENV USER="Debian"
 ENV ROOT_PWD="Docker!"
 ENV DEV=""
-ENV CUSTOM_THEME=""
 
 RUN mkdir $DATA_DIR	&& \
 	useradd -d $DATA_DIR -s /bin/bash $USER && \
