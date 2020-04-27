@@ -4,20 +4,22 @@ export DISPLAY=:99
 export XDG_RUNTIME_DIR=/tmp
 
 echo "---Preparing Server---"
+if [ -f /opt/scripts/user.sh ]; then
+	ln -s /opt/scripts/user.sh ${DATA_DIR}/user.sh
+fi
 echo "---Checking for old logfiles---"
-find $DATA_DIR -name "XvfbLog.*" -exec rm -f {} \;
-find $DATA_DIR -name "x11vncLog.*" -exec rm -f {} \;
+find ${DATA_DIR}/.logs -name "XvfbLog.*" -exec rm -f {} \;
+find ${DATA_DIR}/.logs -name "x11vncLog.*" -exec rm -f {} \;
 echo "---Checking for old lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \;
-find /var/run/dbus -name "pid" -exec rm -f {} \;
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting Xvfb server---"
-screen -S Xvfb -L -Logfile ${DATA_DIR}/XvfbLog.0 -d -m /opt/scripts/start-Xvfb.sh
+screen -S Xvfb -L -Logfile ${DATA_DIR}/.logs/XvfbLog.0 -d -m /opt/scripts/start-Xvfb.sh
 sleep 2
 
 echo "---Starting x11vnc server---"
-screen -S x11vnc -L -Logfile ${DATA_DIR}/x11vncLog.0 -d -m /opt/scripts/start-x11.sh
+screen -S x11vnc -L -Logfile ${DATA_DIR}/.logs/x11vncLog.0 -d -m /opt/scripts/start-x11.sh
 sleep 2
 
 echo "---Starting noVNC server---"
