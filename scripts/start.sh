@@ -22,6 +22,7 @@ if [ ! -d /tmp/xdg ]; then
 fi
 
 echo "---Starting...---"
+rm -R ${DATA_DIR}/.dbus/session-bus/* 2> /dev/null
 chown -R ${UID}:${GID} /opt/scripts
 chown -R ${UID}:${GID} /tmp/xdg
 chmod -R 0700 /tmp/xdg
