@@ -3,9 +3,9 @@ This Container is a full Debian Buster Xfce4 Desktop environment with a noVNC we
 
 If you want to install some other application you can do that by creating a user.sh and mounting it to the container to /opt/scripts/user.sh (a standard bash script should do the trick).
 
-You also can reverse proxy this container with nginx or apache (for more info see the Github/Dockerhub page).
+You also can reverse proxy this container with nginx or apache (for an example look at the end of the page).
 
->**Storage Note:** All things that are saved in the container should be in the home or a subdirectory in your homefolder, all files that are store outside your homefolder are not persistant and will be wiped if there is an update of the container or you change something in the template.
+**Storage Note:** All things that are saved in the container should be in the home or a subdirectory in your homefolder, all files that are store outside your homefolder are not persistant and will be wiped if there is an update of the container or you change something in the template.
 
 ### **ATTENTION:** This container is not finished yet and currently in alpha state.
 
@@ -13,7 +13,7 @@ You also can reverse proxy this container with nginx or apache (for more info se
 | Name | Value | Example |
 | --- | --- | --- |
 | DATA_DIR | Home folder | /debian |
-| ROOT_PWD | Please choose a strong root password | superstongpassword |
+| ROOT_PWD | Please choose a strong root password | superstrongpassword |
 | CUSTOM_RES_W | Your preferred screen width | 1280 |
 | CUSTOM_RES_H | Your preferred screen height | 1024 |
 | UID | User Identifier | 99 |
