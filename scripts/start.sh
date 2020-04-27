@@ -17,8 +17,15 @@ else
 	echo "---No optional script found, continuing---"
 fi
 
+if [ ! -d /tmp/xdg ]; then
+	mkdir /tmp/xdg
+fi
+
 echo "---Starting...---"
 chown -R ${UID}:${GID} /opt/scripts
+chown -R ${UID}:${GID} /tmp/xdg
+chmod -R 0700 /tmp/xdg
 dbus-uuidgen > /var/lib/dbus/machine-id
+rm -R /tmp/.* 2> /dev/null
 chown -R ${UID}:${GID} ${DATA_DIR}
 su ${USER} -c "/opt/scripts/start-server.sh"
