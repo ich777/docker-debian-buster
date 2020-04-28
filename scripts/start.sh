@@ -28,7 +28,7 @@ if [ "$LOCALE_GEN" != "${USER_LOCALES}" ]; then
 	echo "${USER_LOCALES}" > "/etc/locale.gen"
 	sleep 2
 	locale-gen
-	update-locale LC_ALL=${USER_LOCALES}
+	update-locale LC_ALL="${USER_LOCALES}"
 else
 	echo "---Locales set correctly, continuing---"
 fi
