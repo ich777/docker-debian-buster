@@ -44,7 +44,7 @@ sleep 2
 
 echo "---Starting Desktop---"
 if [ "${DEV}" == "true" ]; then
-	startxfce4
+	xfce4-session
 else
-	startxfce4 > /dev/null
+	xfce4-session 2> /dev/null
 fi
