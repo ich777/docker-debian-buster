@@ -21,6 +21,23 @@ if [ ! -d /tmp/xdg ]; then
 	mkdir /tmp/xdg
 fi
 
+echo "---Configuring Locales to: ${USER_LOCALES}---"
+LOCALE_GEN=$(head -n 1 /etc/locale.gen)
+if [ "$LOCALE_GEN" != "${USER_LOCALES}" ]; then
+	rm /etc/locale.gen
+	echo "${USER_LOCALES}" > "/etc/locale.gen"
+	sleep 2
+	if locale-gen ; then
+		echo "---Successfully generated locales for ${USER_LOCALES}---"
+	else
+		echo "---Can't generate locales for ${USER_LOCALES}, putting server into sleep mode!---"
+		sleep infinity
+	fi
+	update-locale LC_ALL=${USER_LOCALES} 2> /dev/null
+else
+	echo "---Locales set correctly, continuing---"
+fi
+
 echo "---Starting...---"
 rm -R ${DATA_DIR}/.dbus/session-bus/* 2> /dev/null
 rm -R ${DATA_DIR}/.cache 2> /dev/null
