@@ -32,8 +32,8 @@ if [ "$LOCALE_GEN" != "${USER_LOCALES}" ]; then
 	export LANG="$LOCALE_USR"
 	sleep 2
 	locale-gen
-	export LC_ALL="$LOCALE_USR"
-	update-locale LC_ALL="$LOCALE_USR"
+	export LC_ALL=${USER_LOCALES}
+	update-locale LC_ALL=${USER_LOCALES}
 else
 	echo "---Locales set correctly, continuing---"
 fi
