@@ -30,9 +30,9 @@ if [ "$LOCALE_GEN" != "${USER_LOCALES}" ]; then
 	echo "${USER_LOCALES}" > "/etc/locale.gen"
 	export LANGUAGE="$LOCALE_USR"
 	export LANG="$LOCALE_USR"
-	export LC_ALL="$LOCALE_USR"
 	sleep 2
 	locale-gen
+	export LC_ALL="$LOCALE_USR"
 	update-locale LC_ALL="$LOCALE_USR"
 else
 	echo "---Locales set correctly, continuing---"
