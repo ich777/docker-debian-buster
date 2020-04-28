@@ -21,6 +21,23 @@ if [ ! -d /tmp/xdg ]; then
 	mkdir /tmp/xdg
 fi
 
+echo "---Configuring Locales to: ${USER_LOCALES}---"
+LOCALE_GEN=$(head -n 1 /etc/locale.gen)
+LOCALE_USR=$(echo ${USER_LOCALES} | cut -d ' ' -f 1)
+
+if [ "$LOCALE_GEN" != "${USER_LOCALES}" ]; then
+	rm /etc/locale.gen
+	echo "${USER_LOCALES}" > "/etc/locale.gen"
+	export LANGUAGE="$LOCALE_USR"
+	export LANG="$LOCALE_USR"
+	export LC_ALL="$LOCALE_USR" 2> /dev/null
+	sleep 2
+	locale-gen
+	update-locale LC_ALL="$LOCALE_USR"
+else
+	echo "---Locales set correctly, continuing---"
+fi
+
 echo "---Starting...---"
 rm -R ${DATA_DIR}/.dbus/session-bus/* 2> /dev/null
 rm -R ${DATA_DIR}/.cache 2> /dev/null

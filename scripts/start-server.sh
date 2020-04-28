@@ -1,5 +1,4 @@
 #!/bin/bash
-export LANG=${USER_LOCALES}
 export DISPLAY=:99
 export XDG_RUNTIME_DIR=/tmp/xdg
 
