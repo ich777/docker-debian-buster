@@ -27,13 +27,8 @@ if [ "$LOCALE_GEN" != "${USER_LOCALES}" ]; then
 	rm /etc/locale.gen
 	echo "${USER_LOCALES}" > "/etc/locale.gen"
 	sleep 2
-	if locale-gen ; then
-		echo "---Successfully generated locales for ${USER_LOCALES}---"
-	else
-		echo "---Can't generate locales for ${USER_LOCALES}, putting server into sleep mode!---"
-		sleep infinity
-	fi
-	update-locale LC_ALL=${USER_LOCALES} 2> /dev/null
+	locale-gen
+	update-locale LC_ALL=${USER_LOCALES}
 else
 	echo "---Locales set correctly, continuing---"
 fi
