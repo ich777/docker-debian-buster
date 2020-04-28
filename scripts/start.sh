@@ -23,9 +23,13 @@ fi
 
 echo "---Configuring Locales to: ${USER_LOCALES}---"
 LOCALE_GEN=$(head -n 1 /etc/locale.gen)
+LOCALE_USR=$(echo $LOCALE_GEN | cut -d ' ' -f 1)
+
 if [ "$LOCALE_GEN" != "${USER_LOCALES}" ]; then
 	rm /etc/locale.gen
 	echo "${USER_LOCALES}" > "/etc/locale.gen"
+	export LANGUAGE="$LOCALE_USR"
+	export LANG="$LOCALE_USR"
 	sleep 2
 	locale-gen
 	update-locale LC_ALL="${USER_LOCALES}"
