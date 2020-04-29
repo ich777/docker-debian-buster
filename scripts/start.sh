@@ -40,12 +40,13 @@ fi
 
 echo "---Starting...---"
 rm -R ${DATA_DIR}/.dbus/session-bus/* 2> /dev/null
-rm -R ${DATA_DIR}/.cache 2> /dev/null
 chown -R ${UID}:${GID} /opt/scripts
 chown -R ${UID}:${GID} /tmp/xdg
 chmod -R 0700 /tmp/xdg
 dbus-uuidgen > /var/lib/dbus/machine-id
 rm -R /tmp/.* 2> /dev/null
+mkdir -p /tmp/.ICE-unix
+chown root:root /tmp/.ICE-unix/ 
 chown -R ${UID}:${GID} ${DATA_DIR}
 chown -R ${UID}:${GID} /tmp/config
 su ${USER} -c "/opt/scripts/start-server.sh"
