@@ -26,14 +26,14 @@ if [ ! -f ${DATA_DIR}/.local/share/applications/x11vnc.desktop  ]; then
 fi
 
 echo "---Checking for old logfiles---"
-find ${DATA_DIR}/.logs -name "XvfbLog.*" -exec rm -f {} \;
+find ${DATA_DIR}/.logs -name "startxLog.*" -exec rm -f {} \;
 find ${DATA_DIR}/.logs -name "x11vncLog.*" -exec rm -f {} \;
 echo "---Checking for old lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \;
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting Xvfb server---"
-screen -S Xvfb -L -Logfile ${DATA_DIR}/.logs/XvfbLog.0 -d -m /opt/scripts/start-Xvfb.sh
+screen -S startx -L -Logfile ${DATA_DIR}/.logs/XvfbLog.0 -d -m /opt/scripts/start-startx.sh
 sleep 2
 
 echo "---Starting x11vnc server---"
@@ -44,9 +44,16 @@ echo "---Starting noVNC server---"
 websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5900
 sleep 2
 
-echo "---Starting Desktop---"
-if [ "${DEV}" == "true" ]; then
-	xfce4-session
-else
-	xfce4-session 2> /dev/null
+if [ "${ENABLE_VNC_SRV}" == "true" ]; then
+	echo "---Starting x11vnc server---"
+	screen -S x11vnc -L -Logfile ${DATA_DIR}/.logs/x11vncLog.0 -d -m /opt/scripts/start-x11.sh
+	sleep 2
+
+	echo "---Starting noVNC server---"
+	websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem 8080 localhost:5900
+	sleep 2
 fi
+
+
+
+tail -f ${DATA_DIR}/.logs/XvfbLog.0
