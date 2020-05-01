@@ -57,7 +57,7 @@ RUN mkdir $DATA_DIR	&& \
 
 ADD /scripts/ /opt/scripts/
 COPY /icons/* /usr/share/novnc/app/images/icons/
-COPY /debian.png /usr/share/backgrounds/xfce/
+COPY /steam.png /usr/share/backgrounds/xfce/
 COPY /config/* /tmp/config/
 COPY /xorg.conf /etc/X11/xorg.conf
 COPY /edid.txt /tmp/edid.txt
