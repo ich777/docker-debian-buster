@@ -1,5 +1,5 @@
 #!/bin/bash
-export DISPLAY=:99
+export DISPLAY=${DISPLAY}
 export XDG_RUNTIME_DIR=/tmp/xdg
 export LANGUAGE="$LOCALE_USR"
 export LANG="$LOCALE_USR"
