@@ -16,6 +16,16 @@ if [ -f /opt/scripts/user.sh ]; then
 else
 	echo "---No optional script found, continuing---"
 fi
+
+if [ -z "${DFP_NR}" ]; then
+	echo "------------------------------------------------------"
+	echo "-------'DFP_NR' is empty please make sure that--------"
+	echo "---you've connected a monitor to the Graphics Card----"
+	echo "---otherwise the container will not properly start!---"
+	echo "------------------------------------------------------"
+	sleep 10
+fi
+
 if [ -z "${PCI_ADDR}" ]; then
 echo "---Trying to get Nvidia device address---"
 export PCI_ADDR="$(nvidia-smi | grep 0000 | cut -d '|' -f3 | cut -d ':' -f2,3 | cut -d ' ' -f1)"
@@ -70,8 +80,14 @@ if [ ! -f /usr/bin/nvidia-settings ]; then
 fi
 
 sed -i "/BusID/c\\\tBusID\t\"${PCI_ADDR}\"" /etc/X11/xorg.conf
-sed -i "/Option\\t\"ConnectedMonitor\"/c\\\tOption\t\"ConnectedMonitor\" \"DFP-${DFP_NR}\"" /etc/X11/xorg.conf
-sed -i "/Option\\t\"CustomEDID\"/c\\\tOption\t\"CustomEDID\" \"DFP${DFP_NR}:${DATA_DIR}/edid.txt\"" /etc/X11/xorg.conf
+
+if [ ! -z "${DFP_NR}" ]; then
+	sed -i "/Option\\t\"ConnectedMonitor\"/c\\\tOption\t\"ConnectedMonitor\" \"DFP-${DFP_NR}\"" /etc/X11/xorg.conf
+	sed -i "/Option\\t\"CustomEDID\"/c\\\tOption\t\"CustomEDID\" \"DFP${DFP_NR}:${DATA_DIR}/edid.txt\"" /etc/X11/xorg.conf
+else
+	sed -i "/Option\\t\"ConnectedMonitor\"/c\\\tOption\t\"ConnectedMonitor\"" /etc/X11/xorg.conf
+	sed -i "/Option\\t\"CustomEDID\"/c\\\tOption\t\"CustomEDID\"" /etc/X11/xorg.conf
+fi
 
 if [ ! -d /tmp/xdg ]; then
 	mkdir -p /tmp/xdg
