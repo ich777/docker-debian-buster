@@ -3,6 +3,7 @@ FROM ich777/novnc-baseimage
 LABEL maintainer="admin@minenet.at"
 
 RUN export TZ=Europe/Rome && \
+	dpkg --add-architecture i386 && \
 	sed -i '/deb http:\/\/deb.debian.org\/debian buster main/c\deb http:\/\/deb.debian.org\/debian buster main non-free' /etc/apt/sources.list && \
 	apt-get update && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
@@ -26,7 +27,7 @@ RUN export TZ=Europe/Rome && \
 	p7zip -d /usr/share/locale/translation.7z && \
 	chmod -R 755 /usr/share/locale/ && \
 	rm -rf /var/lib/apt/lists/* && \
-	sed -i '/    document.title =/c\    document.title = "DebianBuster - noVNC";' /usr/share/novnc/app/ui.js && \
+	sed -i '/    document.title =/c\    document.title = "DebianBuster Nvidia - noVNC";' /usr/share/novnc/app/ui.js && \
 	mkdir /tmp/config && \
 	rm /usr/share/novnc/app/images/icons/*
 
