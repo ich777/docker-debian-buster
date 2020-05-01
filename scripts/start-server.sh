@@ -46,6 +46,7 @@ if [ "${ENABLE_VNC_SRV}" == "true" ]; then
 	sleep 2
 fi
 
-
+echo "---Starting Pulseaudio server---"
+pulseaudio --start
 
 tail -f ${DATA_DIR}/.logs/XvfbLog.0
