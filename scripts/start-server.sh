@@ -25,6 +25,11 @@ if [ ! -f ${DATA_DIR}/.local/share/applications/x11vnc.desktop  ]; then
 	echo "Hidden=true" >> ${DATA_DIR}/.local/share/applications/x11vnc.desktop
 fi
 
+# Temporary fix for not saving the password in Steam
+if [ -f ${DATA_DIR}/.steam/registry.vdf ]; then
+	sed -i '/"RememberPassword"/c\\t\t\t\t\t"RememberPassword"\t"0"' ${DATA_DIR}/.steam/registry.vdf
+fi
+
 echo "---Checking for old logfiles---"
 find ${DATA_DIR}/.logs -name "startxLog.*" -exec rm -f {} \;
 find ${DATA_DIR}/.logs -name "x11vncLog.*" -exec rm -f {} \;
