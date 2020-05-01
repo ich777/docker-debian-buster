@@ -7,7 +7,7 @@ RUN export TZ=Europe/Rome && \
 	apt-get update && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
 	echo $TZ > /etc/timezone && \
-	DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends man-db hdparm udev whiptail reportbug init vim-common iproute2 nano gdbm-l10n less iputils-ping netcat-traditional perl bzip2 gettext-base manpages file liblockfile-bin python3-reportbug libnss-systemd isc-dhcp-common systemd-sysv xz-utils perl-modules-5.28 debian-faq wamerican bsdmainutils systemd cpio logrotate traceroute dbus kmod isc-dhcp-client telnet krb5-locales lsof debconf-i18n cron ncurses-term iptables ifupdown procps rsyslog apt-utils netbase pciutils bash-completion vim-tiny groff-base apt-listchanges bind9-host doc-debian libpam-systemd openssh-client xfce4 xorg dbus-x11 sudo gvfs-backends gvfs-common gvfs-fuse gvfs firefox-esr at-spi2-core gpg-agent mousepad xarchiver sylpheed unzip gtk2-engines-pixbuf gnome-themes-standard lxtask xfce4-terminal p7zip unrar && \
+	DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends man-db hdparm udev whiptail reportbug init vim-common iproute2 nano gdbm-l10n less iputils-ping netcat-traditional perl bzip2 gettext-base manpages file liblockfile-bin python3-reportbug libnss-systemd isc-dhcp-common systemd-sysv xz-utils perl-modules-5.28 debian-faq wamerican bsdmainutils systemd cpio logrotate traceroute dbus kmod isc-dhcp-client telnet krb5-locales lsof debconf-i18n cron ncurses-term iptables ifupdown procps rsyslog apt-utils netbase pciutils bash-completion vim-tiny groff-base apt-listchanges bind9-host doc-debian libpam-systemd openssh-client xfce4 xorg dbus-x11 sudo gvfs-backends gvfs-common gvfs-fuse gvfs firefox-esr at-spi2-core gpg-agent mousepad xarchiver sylpheed unzip gtk2-engines-pixbuf gnome-themes-standard lxtask xfce4-terminal p7zip unrar gcc make dbus pulseaudio xserver-xorg-legacy steam && \
 	apt-get remove xterm && \
 	cd /tmp && \
 	wget -O /tmp/theme.tar.gz https://gitlab.manjaro.org/artwork/themes/breath-gtk/-/archive/master/breath-gtk-master.tar.gz && \
@@ -42,6 +42,13 @@ ENV USER="Debian"
 ENV ROOT_PWD="Docker!"
 ENV DEV=""
 ENV USER_LOCALES="en_US.UTF-8 UTF-8"
+ENV NV_DRV_V=""
+ENV DISPLAY=":0"
+ENV ENABLE_VNC_SRV="true"
+ENV NVIDIA_BUILD_OPTS="-a -N -q --install-libglvnd --ui=none --no-kernel-module"
+ENV PCI_ADDR=""
+ENV V_TERM_NR=0
+ENV DFP_NR="1"
 
 RUN mkdir $DATA_DIR	&& \
 	useradd -d $DATA_DIR -s /bin/bash $USER && \
@@ -52,6 +59,8 @@ ADD /scripts/ /opt/scripts/
 COPY /icons/* /usr/share/novnc/app/images/icons/
 COPY /debian.png /usr/share/backgrounds/xfce/
 COPY /config/* /tmp/config/
+COPY /xorg.conf /etc/X11/xorg.conf
+COPY /edid.txt /tmp/edid.txt
 RUN chmod -R 770 /opt/scripts/
 RUN chmod -R 770 /tmp/config/
 
