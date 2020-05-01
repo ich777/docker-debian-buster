@@ -21,8 +21,9 @@ RUN export TZ=Europe/Rome && \
 	rm /tmp/icons.zip && \
 	gtk-update-icon-cache -f -t /usr/share/icons/Flat-Remix-Green-Dark/ && \
 	cd /usr/share/locale && \
-	wget -O /usr/share/locale/translation.7z https://github.com/ich777/docker-debian-buster/raw/beta/translation.7z && \
+	wget -O /usr/share/locale/translation.7z https://github.com/ich777/docker-debian-buster/raw/master/translation.7z && \
 	p7zip -d /usr/share/locale/translation.7z && \
+	chmod -R 755 /usr/share/locale/ && \
 	rm -rf /var/lib/apt/lists/* && \
 	sed -i '/    document.title =/c\    document.title = "DebianBuster - noVNC";' /usr/share/novnc/app/ui.js && \
 	mkdir /tmp/config && \
