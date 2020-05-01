@@ -1,6 +1,8 @@
 #!/bin/bash
 export DISPLAY=:99
 export XDG_RUNTIME_DIR=/tmp/xdg
+export LANGUAGE="$LOCALE_USR"
+export LANG="$LOCALE_USR"
 
 echo "---Preparing Server---"
 if [ ! -d ${DATA_DIR}/.config/xfce4/xfconf/xfce-perchannel-xml/ ]; then
