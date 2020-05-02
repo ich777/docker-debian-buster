@@ -54,5 +54,5 @@ fi
 echo "---Starting Pulseaudio server---"
 pulseaudio --start
 
-screen -S watchdog -d -m /opt/scripts/watchdog.sh
+screen -S watchdog -d -m /opt/scripts/start-watchdog.sh
 tail -f ${DATA_DIR}/.logs/XvfbLog.0
