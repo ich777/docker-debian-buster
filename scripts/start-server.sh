@@ -38,7 +38,7 @@ find /tmp -name ".X99*" -exec rm -f {} \;
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Starting Xvfb server---"
-screen -S startx -L -Logfile ${DATA_DIR}/.logs/XvfbLog.0 -d -m /opt/scripts/start-startx.sh
+screen -S startx -L -Logfile ${DATA_DIR}/.logs/startxLog.0 -d -m /opt/scripts/start-startx.sh
 sleep 2
 
 if [ "${ENABLE_VNC_SRV}" == "true" ]; then
