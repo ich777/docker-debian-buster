@@ -127,7 +127,7 @@ chown -R ${UID}:${GID} /tmp/config
 killpid=0 >/dev/null
 term_handler() {
         if [ $killpid -ne 0 ]; then
-                su Debian -c "xfce4-session-logout --halt"
+                su ${USER} -c "xfce4-session-logout --halt"                
                 kill -SIGTERM "$killpid"
                 wait "$killpid"
         fi
@@ -135,7 +135,7 @@ term_handler() {
 }
 
 trap 'kill ${!}; term_handler' SIGTERM
-su Debian -c "/opt/scripts/start-server.sh" &
+su ${USER} -c "/opt/scripts/start-server.sh" &
 killpid="$!"
 while true
 do
