@@ -49,4 +49,24 @@ mkdir -p /tmp/.ICE-unix
 chown root:root /tmp/.ICE-unix/ 
 chown -R ${UID}:${GID} ${DATA_DIR}
 chown -R ${UID}:${GID} /tmp/config
-su ${USER} -c "/opt/scripts/start-server.sh"
+chown -R ${UID}:${GID} /mnt/
+killpid=0
+term_handler() {
+        if [ $killpid -ne 0 ]; then
+                su ${USER} -c "xfce4-session-logout --halt"                
+                kill -SIGTERM "$killpid"
+                wait "$killpid"
+        fi
+        exit 143;
+}
+
+trap 'kill ${!}; term_handler' SIGTERM
+su ${USER} -c "/opt/scripts/start-server.sh" &
+killpid="$!"
+while true
+do
+        if ! pgrep -f start-server.sh >/dev/null ; then
+                exit 0
+        fi
+        sleep 5
+done
