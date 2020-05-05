@@ -85,8 +85,8 @@ if [ ! -z "${DFP_NR}" ]; then
 	sed -i "/Option\\t\"ConnectedMonitor\"/c\\\tOption\t\"ConnectedMonitor\" \"DFP-${DFP_NR}\"" /etc/X11/xorg.conf
 	sed -i "/Option\\t\"CustomEDID\"/c\\\tOption\t\"CustomEDID\" \"DFP${DFP_NR}:${DATA_DIR}/edid.txt\"" /etc/X11/xorg.conf
 else
-	sed -i "/Option\\t\"ConnectedMonitor\"/c\\\tOption\t\"ConnectedMonitor\"" /etc/X11/xorg.conf
-	sed -i "/Option\\t\"CustomEDID\"/c\\\tOption\t\"CustomEDID\"" /etc/X11/xorg.conf
+	sed -i "/Option\\t\"ConnectedMonitor\"/c\#\\tOption\t\"ConnectedMonitor\"" /etc/X11/xorg.conf
+	sed -i "/Option\\t\"CustomEDID\"/c\#\\tOption\t\"CustomEDID\"" /etc/X11/xorg.conf
 fi
 
 if [ ! -d /tmp/xdg ]; then
