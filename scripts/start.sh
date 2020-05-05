@@ -124,6 +124,8 @@ mkdir -p /tmp/.ICE-unix
 chown root:root /tmp/.ICE-unix/ 
 chown -R ${UID}:${GID} ${DATA_DIR}
 chown -R ${UID}:${GID} /tmp/config
+chown -R ${UID}:${GID} /mnt/
+chown -R ${UID}:${GID} /dev/input/
 killpid=0 >/dev/null
 term_handler() {
         if [ $killpid -ne 0 ]; then
@@ -142,5 +144,5 @@ do
         if ! pgrep -f start-server.sh >/dev/null ; then
                 exit 0
         fi
-        sleep 2
+        sleep 5
 done
