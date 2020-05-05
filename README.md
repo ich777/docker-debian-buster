@@ -59,7 +59,7 @@ docker run --name DebianBuster-Nvidia -d \
     --env 'GID=100' \
     --env 'UMASK=000' \
     --env 'DATA_PERM=770' \
-    --volume /mnt/user/appdata/debian-buster:/debian \
+    --volume /mnt/user/appdata/debian-buster-nvidia:/debian \
     --restart=unless-stopped \
     --shm-size=2G \
     --runtime=nvidia \
