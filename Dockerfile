@@ -52,7 +52,7 @@ ENV NVIDIA_BUILD_OPTS="-a -N -q --install-libglvnd --ui=none --no-kernel-module"
 ENV PCI_ADDR=""
 ENV V_TERM_NR=0
 ENV DFP_NR="1"
-ENV PCI_ADDR="01:00:0"
+ENV PCI_ADDR="PCI:01:00:0"
 
 RUN mkdir $DATA_DIR	&& \
 	useradd -d $DATA_DIR -s /bin/bash $USER && \
