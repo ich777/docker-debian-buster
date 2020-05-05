@@ -50,4 +50,4 @@ chown root:root /tmp/.ICE-unix/
 chown -R ${UID}:${GID} ${DATA_DIR}
 chown -R ${UID}:${GID} /tmp/config
 chown -R ${UID}:${GID} /mnt/
-/opt/scripts/start-server.sh
+su ${USER} -c "/opt/scripts/start-server.sh"
