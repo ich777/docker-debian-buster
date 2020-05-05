@@ -46,7 +46,8 @@ chmod -R 0700 /tmp/xdg
 dbus-uuidgen > /var/lib/dbus/machine-id
 rm -R /tmp/.* 2> /dev/null
 mkdir -p /tmp/.ICE-unix
-chown root:root /tmp/.ICE-unix/ 
+chown root:root /tmp/.ICE-unix/
+chmod 1777 /tmp/.ICE-unix/
 chown -R ${UID}:${GID} ${DATA_DIR}
 chown -R ${UID}:${GID} /tmp/config
 chown -R ${UID}:${GID} /mnt/
