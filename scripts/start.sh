@@ -126,7 +126,7 @@ chown -R ${UID}:${GID} ${DATA_DIR}
 chown -R ${UID}:${GID} /tmp/config
 chown -R ${UID}:${GID} /mnt/
 chown -R ${UID}:${GID} /dev/input/
-killpid=0 >/dev/null
+killpid=0
 term_handler() {
         if [ $killpid -ne 0 ]; then
                 su ${USER} -c "xfce4-session-logout --halt"                
