@@ -119,6 +119,11 @@ fi
 chown -R ${UID}:${GID} /tmp/xdg
 chmod -R 0700 /tmp/xdg
 dbus-uuidgen > /var/lib/dbus/machine-id
+if [ ! -d /var/run/dbus ]; then
+	mkdir -p /var/run/dbus
+fi
+chown -R ${UID}:${GID} /var/run/dbus/
+chmod -R 770 /var/run/dbus/
 rm -R /tmp/.* 2> /dev/null
 mkdir -p /tmp/.ICE-unix
 chown root:root /tmp/.ICE-unix/ 
