@@ -4,8 +4,8 @@ LABEL maintainer="admin@minenet.at"
 
 RUN export TZ=Europe/Rome && \
 	apt-get update &&\
-	apt-get -y install --no-install-recommends elogind && \
-	dpkg --add-architecture i386 && \
+	apt-get -y install --no-install-recommends elogind
+RUN	dpkg --add-architecture i386 && \
 	sed -i '/deb http:\/\/deb.debian.org\/debian buster main/c\deb http:\/\/deb.debian.org\/debian buster main non-free' /etc/apt/sources.list && \
 	apt-get update && \
 	ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
