@@ -11,8 +11,6 @@ You can also mount any directory from your server to /mnt/... (I recommend you t
 
 **CONTROLLER:** Note that the controller works in Big Picture mode but will not work in the games since Unraid doesn't have the kernel modules 'joydev' and 'uinput' loaded/available. If you want to use the controller please map the buttons to key inputs and everything works just fine.
 
-**STEAM PASSWORD:** The container will not store the password from your Steam account since there is a bug if you save it and try to restart Steam it will not show up (if already got this problem simply restart the container and you should be able to log in again).
-
 **NETWORK MODE:** If you want to use the container as a Steam In Home Streaming host device you should set the network type to bridge and assign it it's own IP, if you don't do this the traffic will be routed through the internet since Steam thinks you are on a different network.
 
 **ATTENTION:** This container is not finished yet and currently in alpha state.
@@ -21,7 +19,7 @@ You can also mount any directory from your server to /mnt/... (I recommend you t
 
 ### **ATTENTION:** This container is not finished yet and currently in alpha state.
 
-If you got any questions, suggestions for improvements or can help with the password issue above please feel free to open an issue on my Github or write a forum post.
+If you got any questions, suggestions for improvements or can help feel free to open an issue on my Github or write a forum post.
 
 ## Env params
 | Name | Value | Example |
