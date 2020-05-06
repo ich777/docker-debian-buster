@@ -54,5 +54,30 @@ fi
 echo "---Starting Pulseaudio server---"
 pulseaudio --start
 
+echo -e "----------------------------------------------------------------------------------------------------\nListing possible outputs and screen modes:\n\n '$(xrandr -q)'\n----------------------------------------------------------------------------------------------------"
+
+echo -e "\n\n\n---Looks like your highest possible output on: '$(xrandr -q | grep -w "connected" | cut -d ' ' -f1)' is: '$(xrandr -q | grep -w "connected" -A 2 | tail -1 | cut -d ' ' -f4)'---\n\n\n"
+
+if [ ! -f ${DATA_DIR}/.config/container.cfg ]; then
+	echo "---Trying to set the resolution to: '$(xrandr -q | grep -w "connected" -A 2 | tail -1 | cut -d ' ' -f4)' on output: '$(xrandr -q | grep -w "connected" | cut -d ' ' -f1)'---"
+	xrandr -d ${DISPLAY} --output $(xrandr -q | grep -w "connected" | cut -d ' ' -f1) --mode $(xrandr -q | grep -w "connected" -A 2 | tail -1 | cut -d ' ' -f4)
+	echo
+	echo "-------------------------------------------------------------------------------"
+	echo "--------If you want to set the resolution manually please create a file--------"
+	echo "---------in /debian/.config/container.cfg with the following contents:---------"
+	echo "-------------------------------------------------------------------------------"
+	echo "Resolution: 1920x1080"
+	echo "Output: HDMI-0"
+	echo "--------------------------------------------------------------------------------"
+	echo "---Change the resolution and output to your specific configuration/preference---"
+	echo "--------------------------------------------------------------------------------"
+	echo
+else
+	echo "---Setting resolution to: $(grep "Resolution:" ${DATA_DIR}/.config/container.cfg | cut -d ' ' -f 2) on output: $(grep "Output:" ${DATA_DIR}/.config/container.cfg | cut -d ' ' -f 2)---"
+	xrandr -d ${DISPLAY} --output $(grep "Output:" ${DATA_DIR}/.config/container.cfg | cut -d ' ' -f 2) --mode $(grep "Resolution:" ${DATA_DIR}/.config/container.cfg | cut -d ' ' -f 2)
+	echo
+fi
 screen -S watchdog -d -m /opt/scripts/start-watchdog.sh
+sleep 5
+
 tail -f ${DATA_DIR}/.logs/startxLog.0
