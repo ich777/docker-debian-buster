@@ -27,7 +27,7 @@ export LOCALE_USR=$(echo ${USER_LOCALES} | cut -d ' ' -f 1)
 
 if [ "$LOCALE_GEN" != "${USER_LOCALES}" ]; then
 	rm /etc/locale.gen
-	echo "${USER_LOCALES}" > "/etc/locale.gen"
+	echo -e "${USER_LOCALES}\nen_US.UTF-8 UTF-8" > "/etc/locale.gen"
 	export LANGUAGE="$LOCALE_USR"
 	export LANG="$LOCALE_USR"
 	export LC_ALL="$LOCALE_USR" 2> /dev/null
