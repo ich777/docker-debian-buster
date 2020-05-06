@@ -89,6 +89,8 @@ else
 	sed -i "/Option\\t\"CustomEDID\"/c\#\\tOption\t\"CustomEDID\"" /etc/X11/xorg.conf
 fi
 
+sed -i "/  <user>/c\  <user>${USER}</user>" /usr/share/dbus-1/system.conf
+
 if [ ! -d /tmp/xdg ]; then
 	mkdir -p /tmp/xdg
 fi
