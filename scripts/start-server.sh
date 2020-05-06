@@ -25,17 +25,22 @@ if [ ! -f ${DATA_DIR}/.local/share/applications/x11vnc.desktop  ]; then
 	echo "Hidden=true" >> ${DATA_DIR}/.local/share/applications/x11vnc.desktop
 fi
 
-# Temporary fix for not saving the password in Steam
-if [ -f ${DATA_DIR}/.steam/registry.vdf ]; then
-	sed -i '/"RememberPassword"/c\\t\t\t\t\t"RememberPassword"\t"0"' ${DATA_DIR}/.steam/registry.vdf
-fi
-
 echo "---Checking for old logfiles---"
 find ${DATA_DIR}/.logs -name "startxLog.*" -exec rm -f {} \;
 find ${DATA_DIR}/.logs -name "x11vncLog.*" -exec rm -f {} \;
 echo "---Checking for old lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \;
 chmod -R ${DATA_PERM} ${DATA_DIR}
+find /var/run/dbus -name "pid" -exec rm -f {} \;
+
+echo "---Starting dbus service---"
+if dbus-daemon --config-file=/usr/share/dbus-1/system.conf ; then
+	echo "---dbus service started---"
+else
+	echo "---Couldn't start dbus service---"
+	sleep infinity
+fi
+sleep 2
 
 echo "---Starting Xvfb server---"
 screen -S startx -L -Logfile ${DATA_DIR}/.logs/startxLog.0 -d -m /opt/scripts/start-startx.sh
