@@ -114,25 +114,26 @@ fi
 
 echo "---Starting...---"
 rm -R ${DATA_DIR}/.dbus/session-bus/* 2> /dev/null
-chown -R ${UID}:${GID} /opt/scripts
-if [ ! -f ${DATA_DIR}/edid.txt ]; then
-	cp /tmp/edid.txt ${DATA_DIR}/edid.txt
-fi
-chown -R ${UID}:${GID} /tmp/xdg
-chmod -R 0700 /tmp/xdg
-dbus-uuidgen > /var/lib/dbus/machine-id
 if [ ! -d /var/run/dbus ]; then
 	mkdir -p /var/run/dbus
 fi
 chown -R ${UID}:${GID} /var/run/dbus/
 chmod -R 770 /var/run/dbus/
+chown -R ${UID}:${GID} /opt/scripts
+chown -R ${UID}:${GID} /tmp/xdg
+chmod -R 0700 /tmp/xdg
+dbus-uuidgen > /var/lib/dbus/machine-id
 rm -R /tmp/.* 2> /dev/null
 mkdir -p /tmp/.ICE-unix
-chown root:root /tmp/.ICE-unix/ 
+chown root:root /tmp/.ICE-unix/
+chmod 1777 /tmp/.ICE-unix/
 chown -R ${UID}:${GID} ${DATA_DIR}
 chown -R ${UID}:${GID} /tmp/config
 chown -R ${UID}:${GID} /mnt/
 chown -R ${UID}:${GID} /dev/input/
+if [ ! -f ${DATA_DIR}/edid.txt ]; then
+	cp /tmp/edid.txt ${DATA_DIR}/edid.txt
+fi
 killpid=0
 term_handler() {
         if [ $killpid -ne 0 ]; then
