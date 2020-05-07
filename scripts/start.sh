@@ -7,6 +7,7 @@ echo "---Setting umask to ${UMASK}---"
 umask ${UMASK}
 
 echo "root:${ROOT_PWD}" | chpasswd
+export ROOT_PWD="secret"
 
 echo "---Checking for optional scripts---"
 if [ -f /opt/scripts/user.sh ]; then
