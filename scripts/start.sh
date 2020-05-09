@@ -36,7 +36,9 @@ export PCI_ADDR="$(nvidia-smi | grep 0000 | cut -d '|' -f3 | cut -d ':' -f2,3 | 
 	else
 		echo "---Successfully got device ID: ${PCI_ADDR}---"
 	fi
-PCI_ADDR=PCI:"${PCI_ADDR/./:}"
+	PCI_ADDR=PCI:"${PCI_ADDR/./:}"
+else
+	PCI_ADDR="${PCI_ADDR/./:}"
 fi
 
 if [ -z "${NV_DRV_V}" ]; then
