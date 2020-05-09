@@ -34,7 +34,7 @@ export PCI_ADDR="$(nvidia-smi | grep 0000 | cut -d '|' -f3 | cut -d ':' -f2,3 | 
 		echo "---Something went wrong, can't get device address, putting server into sleep mode---"
 		sleep infinity
 	else
-		echo "---Successfully got device ID: ${PCI_ADDR}---"
+		echo "---Successfully got device ID: ${PCI_ADDR/./:}---"
 	fi
 	PCI_ADDR=PCI:"${PCI_ADDR/./:}"
 else
