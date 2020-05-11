@@ -5,6 +5,8 @@ If you want to install some other application you can do that by creating a user
 
 You also can reverse proxy this container with nginx or apache (for an example look at the end of the page).
 
+**ROOT ACCESS:** 1. Open up your WebGUI 2. Open up a terminal 3. Type in 'su' 4. Type in your password that you've set (no screenoutput is shown if you type in passwords in Linux) 5. Press Enter 6. You should now be root.
+
 **Storage Note:** All things that are saved in the container should be in the home or a subdirectory in your homefolder, all files that are store outside your homefolder are not persistant and will be wiped if there is an update of the container or you change something in the template.
 
 ### **ATTENTION:** This container is not finished yet and currently in alpha state.
