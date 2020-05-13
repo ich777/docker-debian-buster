@@ -62,7 +62,7 @@ chown -R ${UID}:${GID} /mnt/
 killpid=0
 term_handler() {
         if [ $killpid -ne 0 ]; then
-                su ${USER} -c "xfce4-session-logout --halt"                
+                export DISPLAY=:99 && su ${USER} -c "xfce4-session-logout --halt"
                 kill -SIGTERM "$killpid"
                 wait "$killpid"
         fi
