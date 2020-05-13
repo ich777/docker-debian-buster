@@ -140,7 +140,7 @@ fi
 killpid=0
 term_handler() {
         if [ $killpid -ne 0 ]; then
-                su ${USER} -c "xfce4-session-logout --halt"                
+                su ${USER} -c "xfce4-session-logout --halt"
                 kill -SIGTERM "$killpid"
                 wait "$killpid"
         fi
