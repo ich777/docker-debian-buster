@@ -59,14 +59,11 @@ chmod 1777 /tmp/.ICE-unix/
 chown -R ${UID}:${GID} ${DATA_DIR}
 chown -R ${UID}:${GID} /tmp/config
 chown -R ${UID}:${GID} /mnt/
-killpid=0
+
 term_handler() {
-        if [ $killpid -ne 0 ]; then
-                export DISPLAY=:99 && su ${USER} -c "xfce4-session-logout --halt"
-                kill -SIGTERM "$killpid"
-                wait "$killpid"
-        fi
-        exit 143;
+	export DISPLAY=:99 && su ${USER} -c "xfce4-session-logout --halt"
+	tail --pid="$(pidof xfce4-session)" -f 2>/dev/null
+	exit 143;
 }
 
 trap 'kill ${!}; term_handler' SIGTERM
