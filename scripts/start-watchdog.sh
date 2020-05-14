@@ -1,4 +1,5 @@
 #!/bin/bash
+killpid="$(pidof xfce4-session)"
 while true
 do
 	tail --pid=$killpid -f /dev/null
