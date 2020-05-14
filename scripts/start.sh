@@ -137,14 +137,11 @@ chown -R ${UID}:${GID} /dev/input/
 if [ ! -f ${DATA_DIR}/edid.txt ]; then
 	cp /tmp/edid.txt ${DATA_DIR}/edid.txt
 fi
-killpid=0
+
 term_handler() {
-        if [ $killpid -ne 0 ]; then
-                su ${USER} -c "xfce4-session-logout --halt"
-                kill -SIGTERM "$killpid"
-                wait "$killpid"
-        fi
-        exit 143;
+	su ${USER} -c "xfce4-session-logout --halt"
+	tail --pid="$(pidof xfce4-session)" -f 2>/dev/null
+	exit 143;
 }
 
 trap 'kill ${!}; term_handler' SIGTERM
