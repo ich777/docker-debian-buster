@@ -31,6 +31,7 @@ find ${DATA_DIR}/.logs -name "x11vncLog.*" -exec rm -f {} \;
 echo "---Checking for old lock files---"
 find /tmp -name ".X99*" -exec rm -f {} \;
 chmod -R ${DATA_PERM} ${DATA_DIR}
+screen -wipe 2&>/dev/null
 find /var/run/dbus -name "pid" -exec rm -f {} \;
 
 echo "---Starting dbus service---"
