@@ -42,9 +42,8 @@ else
 fi
 sleep 2
 
-echo "---Starting Xfce4 server---"
-/opt/scripts/start-startx.sh &
-killpid="!$" &
+echo "---Starting Xfce4---"
+screen -S startx -L -Logfile ${DATA_DIR}/.logs/startxLog.0 -d -m /opt/scripts/start-startx.sh
 sleep 2
 
 if [ "${ENABLE_VNC_SRV}" == "true" ]; then
@@ -83,5 +82,6 @@ else
 	xrandr -d ${DISPLAY} --output $(grep "Output:" ${DATA_DIR}/.config/container.cfg | cut -d ' ' -f 2) --mode $(grep "Resolution:" ${DATA_DIR}/.config/container.cfg | cut -d ' ' -f 2)
 	echo
 fi
-wait $killpid
-exit 0;
+screen -S watchdog -d -m /opt/scripts/start-watchdog.sh
+sleep 5
+tail -f ${DATA_DIR}/.logs/startxLog.0
