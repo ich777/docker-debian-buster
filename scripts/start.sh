@@ -133,7 +133,6 @@ chmod 1777 /tmp/.ICE-unix/
 chown -R ${UID}:${GID} ${DATA_DIR}
 chown -R ${UID}:${GID} /tmp/config
 chown -R ${UID}:${GID} /mnt/
-chown -R ${UID}:${GID} /dev/input/
 if [ ! -f ${DATA_DIR}/edid.txt ]; then
 	cp /tmp/edid.txt ${DATA_DIR}/edid.txt
 fi
