@@ -93,6 +93,7 @@ else
 			chmod +x /tmp/NVIDIA.run && \
 			/tmp/NVIDIA.run ${NVIDIA_BUILD_OPTS} > /dev/null 2>&1 && \
 			mv /tmp/NVIDIA.run ${DATA_DIR}/NVIDIA_${NV_DRV_V}.run
+		fi
 	else
 		echo "---Nvidia Driver v$CUR_NV_DRV_V Up-To-Date---"
 	fi
