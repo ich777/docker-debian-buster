@@ -80,6 +80,22 @@ if [ ! -f /usr/bin/nvidia-settings ]; then
 		/tmp/NVIDIA.run ${NVIDIA_BUILD_OPTS} > /dev/null 2>&1 && \
 		mv /tmp/NVIDIA.run ${DATA_DIR}/NVIDIA_${NV_DRV_V}.run
 	fi
+else
+	CUR_NV_DRV_V="$(/usr/bin/nvidia-settings --version | grep version | cut -d ' ' -f 4)"
+	if [ "$NV_DRV_V" != "$CUR_NV_DRV_V" ]; then
+		echo "---Driver version missmatch, currently installed: v$CUR_NV_DRV_V, driver on Host: v$NV_DRV_V---"
+		if [ -f ${DATA_DIR}/NVIDIA_${NV_DRV_V}.run ]; then
+			echo "---Found NVIDIA Driver v${NV_DRV_V} localy, installing...---"
+			${DATA_DIR}/NVIDIA_${NV_DRV_V}.run ${NVIDIA_BUILD_OPTS} > /dev/null 2>&1
+		else
+			echo "---Downloading and installing Nvidia Driver v${NV_DRV_V}---"
+			wget -q --show-progress --progress=bar:force:noscroll -O /tmp/NVIDIA.run http://download.nvidia.com/XFree86/Linux-x86_64/${NV_DRV_V}/NVIDIA-Linux-x86_64-${NV_DRV_V}.run && \
+			chmod +x /tmp/NVIDIA.run && \
+			/tmp/NVIDIA.run ${NVIDIA_BUILD_OPTS} > /dev/null 2>&1 && \
+			mv /tmp/NVIDIA.run ${DATA_DIR}/NVIDIA_${NV_DRV_V}.run
+	else
+		echo "---Nvidia Driver v$CUR_NV_DRV_V Up-To-Date---"
+	fi
 fi
 
 sed -i "/BusID/c\\\tBusID\t\"${PCI_ADDR}\"" /etc/X11/xorg.conf
