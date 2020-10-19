@@ -33,6 +33,12 @@ RUN export TZ=Europe/Rome && \
 	mkdir /tmp/config && \
 	rm /usr/share/novnc/app/images/icons/*
 
+RUN echo "deb http://download.opensuse.org/repositories/home:/strycore/Debian_10/ ./" | tee /etc/apt/sources.list.d/lutris.list && \
+	wget -q https://download.opensuse.org/repositories/home:/strycore/Debian_10/Release.key -O- | apt-key add - && \
+	apt update && \
+	apt install lutris python3-dbus && \
+	rm -rf /var/lib/apt/lists/*
+
 ENV DATA_DIR=/debian
 ENV FORCE_UPDATE=""
 ENV CUSTOM_RES_W=1280
