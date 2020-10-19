@@ -37,6 +37,7 @@ RUN echo "deb http://download.opensuse.org/repositories/home:/strycore/Debian_10
 	wget -q https://download.opensuse.org/repositories/home:/strycore/Debian_10/Release.key -O- | apt-key add - && \
 	apt update && \
 	apt install lutris python3-dbus && \
+	sed -i '/Exec=lutris %U/c\Exec=/usr/games/lutris %U' /usr/share/applications/net.lutris.Lutris.desktop && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR=/debian
