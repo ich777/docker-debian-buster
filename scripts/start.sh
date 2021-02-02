@@ -41,6 +41,9 @@ else
 	echo "---Locales set correctly, continuing---"
 fi
 
+echo "---Checking configuration for noVNC---"
+novnccheck
+
 echo "---Starting...---"
 rm -R ${DATA_DIR}/.dbus/session-bus/* 2> /dev/null
 if [ ! -d /var/run/dbus ]; then
