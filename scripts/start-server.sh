@@ -55,6 +55,16 @@ echo "---Starting noVNC server---"
 websockify -D --web=/usr/share/novnc/ --cert=/etc/ssl/novnc.pem ${NOVNC_PORT} localhost:${RFB_PORT}
 sleep 2
 
+echo "+-------------------------------------------------------------"
+echo "|"
+echo "| This containeris deprecated and is no longer"
+echo "| actively maintained or further developed!"
+echo "|"
+echo "|  Container will start in 60 seconds!"
+echo "|"
+echo "+-------------------------------------------------------------"
+sleep 60
+
 echo "---Starting Desktop---"
 if [ "${DEV}" == "true" ]; then
 	xfce4-session
