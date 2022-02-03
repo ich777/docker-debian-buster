@@ -64,6 +64,16 @@ echo -e "-----------------------------------------------------------------------
 
 echo -e "\n\n\n---Looks like your highest possible output on: '$(xrandr -q | grep -w "connected" | cut -d ' ' -f1)' is: '$(xrandr -q | grep -w "connected" -A 2 | tail -1 | cut -d ' ' -f4)'---\n\n\n"
 
+echo "+-------------------------------------------------------------"
+echo "|"
+echo "| This containeris deprecated and is no longer"
+echo "| actively maintained or further developed!"
+echo "|"
+echo "|  Container will start in 60 seconds!"
+echo "|"
+echo "+-------------------------------------------------------------"
+sleep 60
+
 if [ ! -f ${DATA_DIR}/.config/container.cfg ]; then
 	echo "---Trying to set the resolution to: '$(xrandr -q | grep -w "connected" -A 2 | tail -1 | cut -d ' ' -f4)' on output: '$(xrandr -q | grep -w "connected" | cut -d ' ' -f1)'---"
 	xrandr -d ${DISPLAY} --output $(xrandr -q | grep -w "connected" | cut -d ' ' -f1) --mode $(xrandr -q | grep -w "connected" -A 2 | tail -1 | cut -d ' ' -f4)
